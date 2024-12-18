@@ -1,0 +1,81 @@
+/* General Styling */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hamburger {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 10px;
+}
+
+.nav-menu .nav-button {
+  background: none;
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.nav-menu .nav-button:hover {
+  background-color: #555;
+}
+
+main {
+  padding: 20px;
+}
+
+/* Team Players Page */
+#teamPlayersPage {
+  background-color: black;
+  color: white;
+  height: 100vh;
+  padding: 20px;
+  position: relative;
+}
+
+#submitUserBtn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: gray;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#userList {
+  margin-top: 20px;
+}
+
+.user {
+  background-color: gray;
+  color: white;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  text-align: center;
+}

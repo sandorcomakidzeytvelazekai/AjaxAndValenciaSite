@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Team Players</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Team Players</h1>
+  </header>
+  <main id="teamPlayersPage">
+    <button id="submitUserBtn">Submit User</button>
+    <div id="userList"></div>
+  </main>
+  <script>
+    // Simulate user ID (in practice, you'd get this from authentication)
+    const currentUserId = 'user123'; // Replace this with a unique user ID for each user
+
+    // Retrieve and display saved users from localStorage
+    const userList = document.getElementById('userList');
+    const storedUsers = JSON.parse(localStorage.getItem('teamPlayers')) || [];
+
+    function renderUsers() {
+      userList.innerHTML = ''; // Clear current list
+      storedUsers.forEach((user, index) => {
+        const userElement = document.createElement('div');
+        userElement.className = 'user';
+        userElement.innerHTML = `
+          ${user.name}
+          ${user.id === currentUserId ? '<button class="removeBtn" data-index="' + index + '">Remove</button>' : ''}
+        `;
+        userList.appendChild(userElement);
+      });
+
+      // Add remove functionality
+      const removeButtons = document.querySelectorAll('.removeBtn');
+      removeButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+          const index = e.target.dataset.index;
+          storedUsers.splice(index, 1); // Remove from the array
+          localStorage.setItem('teamPlayers', JSON.stringify(storedUsers)); // Save updated list
+          renderUsers(); // Re-render list
+        });
+      });
+    }
+
+    renderUsers();
+
+    // Submit user
+    document.getElementById('submitUserBtn').addEventListener('click', () => {
+      const discordName = prompt("Enter Discord Name (User#Display):");
+      if (discordName) {
+        const newUser = { name: discordName, id: currentUserId };
+        storedUsers.push(newUser);
+        localStorage.setItem('teamPlayers', JSON.stringify(storedUsers));
+        renderUsers();
+      }
+    });
+  </script>
+</body>
+</html>
